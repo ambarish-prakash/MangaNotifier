@@ -15,11 +15,9 @@ import java.util.Random;
 
 public class NotificationUtil {
 
-    private static String channelId;
     private static Random random = new Random();
 
     public static NotificationChannel createNotificationChannel(String channelId,String channel_name, String channel_desc) {
-        NotificationUtil.channelId = channelId;
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -35,6 +33,7 @@ public class NotificationUtil {
 
     public static void notify(Context context, String name, String description, PendingIntent intent)
     {
+        String channelId = context.getString(R.string.notification_channel);
         Notification notification = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.smallic)
                 .setContentTitle(name)

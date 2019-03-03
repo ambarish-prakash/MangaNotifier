@@ -64,8 +64,8 @@ public class KingdomWorker extends Worker {
         SharedPreferences sharedPreferences = context.getSharedPreferences("LatestManga",MODE_PRIVATE);
         int k = sharedPreferences.getInt("kingdom",100);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, HomePageActivity.class), 0);
         if(foundKingdom && latestChapter>k) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, HomePageActivity.class), 0);
             NotificationUtil.notify(context, "Kingdom", sb.toString(), pendingIntent);
             sharedPreferences.edit().putInt("kingdom",latestChapter).apply();
         }
